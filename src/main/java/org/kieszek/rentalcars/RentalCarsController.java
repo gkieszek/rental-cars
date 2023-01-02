@@ -33,5 +33,9 @@ public class RentalCarsController {
         rentalCarsService.deleteId(id);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
-
+    @PatchMapping("{id}")
+    public ResponseEntity<RentalCarsDto> updatePriceProduct(@PathVariable Long id, @RequestParam Integer price){
+        RentalCarsDto newPriceProduct = rentalCarsService.updatePrice(id, price);
+        return ResponseEntity.status(HttpStatus.OK).body(newPriceProduct);
+    }
 }

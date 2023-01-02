@@ -34,6 +34,12 @@ public class RentalCarsService {
 
     public void deleteId(Long id) {
         rentalCarsRepository.deleteById(id);
+    }
 
+    public RentalCarsDto updatePrice(Long id, Integer price) {
+        RentalCars rentalCars = rentalCarsRepository.findById(id).orElseThrow();
+        rentalCars.setPrice(price);
+        RentalCars saved = rentalCarsRepository.save(rentalCars);
+        return saved.toDto();
     }
 }

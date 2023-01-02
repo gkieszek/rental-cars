@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "Samochody")
+@Table(name = "Cars")
 public class RentalCars {
 
     @Id
@@ -16,6 +16,15 @@ public class RentalCars {
     private String name;
     private String model;
     private Integer price;
+
+    public RentalCars() {
+    }
+
+    public RentalCars(String name, String model, Integer price) {
+        this.name = name;
+        this.model = model;
+        this.price = price;
+    }
 
     public RentalCarsDto toDto(){
         RentalCarsDto rentalCarsDto = new RentalCarsDto(id, name, model, price);
