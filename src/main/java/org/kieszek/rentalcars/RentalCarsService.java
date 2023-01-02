@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -25,5 +26,14 @@ public class RentalCarsService {
                 .stream()
                 .map(rc -> new RentalCarsDto(rc.getId(), rc.getName(), rc.getModel(), rc.getPrice()))
                 .collect(Collectors.toList());
+    }
+
+    public Optional<RentalCars> getById(Long id){
+        return rentalCarsRepository.findById(id);
+    }
+
+    public void deleteId(Long id) {
+        rentalCarsRepository.deleteById(id);
+
     }
 }

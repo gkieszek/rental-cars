@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/rentalcars")
@@ -19,9 +20,18 @@ public class RentalCarsController {
         RentalCarsDto carDto = rentalCarsService.add(rentalCarsDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(carDto);
     }
-
     @GetMapping
     public List<RentalCarsDto> getAllCars(){
         return rentalCarsService.findAll();
     }
+    @GetMapping("{id}")
+    public Optional<RentalCars> getById(@PathVariable Long id){
+        return rentalCarsService.getById(id);
+    }
+    @DeleteMapping("{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable Long id){
+        rentalCarsService.deleteId(id);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
 }
