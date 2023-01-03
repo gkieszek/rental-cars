@@ -38,4 +38,10 @@ public class RentalCarsController {
         RentalCarsDto newPriceProduct = rentalCarsService.updatePrice(id, price);
         return ResponseEntity.status(HttpStatus.OK).body(newPriceProduct);
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<RentalCarsDto> updateCar(@PathVariable Long id, @RequestBody RentalCarsDto rentalCarsDtoDto){
+        RentalCarsDto savedCar = rentalCarsService.updateCar(id, rentalCarsDtoDto);
+        return ResponseEntity.ok(savedCar);
+    }
+
 }

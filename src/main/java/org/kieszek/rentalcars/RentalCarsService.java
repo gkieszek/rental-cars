@@ -42,4 +42,13 @@ public class RentalCarsService {
         RentalCars saved = rentalCarsRepository.save(rentalCars);
         return saved.toDto();
     }
+
+    public RentalCarsDto updateCar(Long id, RentalCarsDto rentalCarsDto) {
+        RentalCars rentalCars = rentalCarsRepository.findById(id).orElseThrow();
+        rentalCars.setModel(rentalCarsDto.getModel());
+        rentalCars.setName(rentalCarsDto.getName());
+        rentalCars.setPrice(rentalCarsDto.getPrice());
+        RentalCars updateCar = rentalCarsRepository.save(rentalCars);
+        return updateCar.toDto();
+    }
 }
