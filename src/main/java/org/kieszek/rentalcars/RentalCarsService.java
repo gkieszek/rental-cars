@@ -35,20 +35,20 @@ public class RentalCarsService {
     public void deleteId(Long id) {
         boolean exist =rentalCarsRepository.existsById(id);
         if (!exist){
-            throw new RuntimeException("This car not exist - "+id);
+            throw new CarException(id);
         }
         rentalCarsRepository.deleteById(id);
     }
 
     public RentalCarsDto updatePrice(Long id, Integer price) {
-        RentalCars rentalCars = rentalCarsRepository.findById(id).orElseThrow(() -> new RuntimeException("Car not exist"));
+        RentalCars rentalCars = rentalCarsRepository.findById(id).orElseThrow(() -> new CarException(id));
         rentalCars.setPrice(price);
         RentalCars saved = rentalCarsRepository.save(rentalCars);
         return saved.toDto();
     }
 
     public RentalCarsDto updateCar(Long id, RentalCarsDto rentalCarsDto) {
-        RentalCars rentalCars = rentalCarsRepository.findById(id).orElseThrow();
+        RentalCars rentalCars = rentalCarsRepository.findById(id).orElseThrow(() -> new CarException(id));
         rentalCars.setModel(rentalCarsDto.getModel());
         rentalCars.setName(rentalCarsDto.getName());
         rentalCars.setPrice(rentalCarsDto.getPrice());
