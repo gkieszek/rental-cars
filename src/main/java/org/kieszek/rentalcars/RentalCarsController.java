@@ -16,7 +16,7 @@ public class RentalCarsController {
     RentalCarsService rentalCarsService;
 
     @PostMapping
-    public ResponseEntity<RentalCarsDto> add(@RequestBody RentalCarsDto rentalCarsDto){
+    public ResponseEntity<RentalCarsDto> addCar(@RequestBody RentalCarsDto rentalCarsDto){
         RentalCarsDto carDto = rentalCarsService.add(rentalCarsDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(carDto);
     }
@@ -48,4 +48,9 @@ public class RentalCarsController {
         return ResponseEntity.ok(savedCar);
     }
 
+    @GetMapping("/search")
+    public List<RentalCarsDto> getListModel(@RequestParam String model){
+        List<RentalCarsDto> byModel =  rentalCarsService.getModel(model);
+        return byModel;
+    }
 }

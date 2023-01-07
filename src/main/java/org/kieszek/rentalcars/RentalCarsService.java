@@ -1,6 +1,7 @@
 package org.kieszek.rentalcars;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -54,5 +55,12 @@ public class RentalCarsService {
         rentalCars.setPrice(rentalCarsDto.getPrice());
         RentalCars updateCar = rentalCarsRepository.save(rentalCars);
         return updateCar.toDto();
+    }
+
+    public List<RentalCarsDto> getModel(String model) {
+        return rentalCarsRepository.findRentalCarsByModel(model)
+                .stream()
+                .map(m -> m.toDto())
+                .collect(Collectors.toList());
     }
 }
