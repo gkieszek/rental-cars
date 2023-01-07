@@ -10,6 +10,7 @@ Project is created with:
 * <s>Thymeleaf (in future)</s>
 * <s>MongoDB (in future)</s>
 * <s>Testing (in future)</s>
+* <s>Docker (in future)</s>
  
  ## Database
  * availability to database: `/console`
