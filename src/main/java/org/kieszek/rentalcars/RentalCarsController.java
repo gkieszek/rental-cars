@@ -49,8 +49,8 @@ public class RentalCarsController {
     }
 
     @GetMapping("/search")
-    public List<RentalCarsDto> getListModel(@RequestParam String model){
+    public ResponseEntity<List<RentalCarsDto>> getListModel(@RequestParam String model){
         List<RentalCarsDto> byModel =  rentalCarsService.getModel(model);
-        return byModel;
+        return ResponseEntity.ok(byModel);
     }
 }
